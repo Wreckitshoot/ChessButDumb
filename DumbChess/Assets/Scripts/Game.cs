@@ -48,9 +48,6 @@ public class Game : MonoBehaviour
         cm.SetXBoard(x);
         cm.SetYBoard(y);
         cm.Activate();
-        Debug.Log(cm.name);
-        Debug.Log(cm.GetXBoard());
-        Debug.Log(cm.GetYBoard());
         return obj;
     }
 
