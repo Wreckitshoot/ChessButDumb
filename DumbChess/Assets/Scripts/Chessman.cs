@@ -15,7 +15,7 @@ public class Chessman : MonoBehaviour
 
     public Sprite black_queen, black_knight, black_bishop, black_rook, black_pawn, black_king;
     public Sprite white_queen, white_knight, white_bishop, white_rook, white_pawn, white_king;
-
+    public bool hasMoved = false;
     public void Activate() //Brandon
     {
         controller = GameObject.FindGameObjectWithTag("GameController");

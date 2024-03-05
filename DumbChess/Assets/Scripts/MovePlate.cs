@@ -50,9 +50,9 @@ public class MovePlate : MonoBehaviour
         reference.GetComponent<Chessman>().SetCoords();
 
         controller.GetComponent<Game>().SetPosition(reference);
-
+        reference.GetComponent<Chessman>().hasMoved = true;
         controller.GetComponent<Game>().nextTurn();
-
+        
         reference.GetComponent<Chessman>().DestroyMovePlates();
         
     }
