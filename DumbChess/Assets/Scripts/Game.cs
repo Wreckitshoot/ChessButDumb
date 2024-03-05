@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour 
 {
@@ -76,5 +77,34 @@ public class Game : MonoBehaviour
         }
         return true;
     }
+    public string getCurrentPlayer()
+    {
+        return currentPlayer;
+    }
+    public bool isGameOver()
+    {
+        return gameOver;
+    }
+    public void nextTurn() 
+    {
+        {
+            if (currentPlayer == "white")
+            {
+                currentPlayer = "black";
+            }
+            else
+            {
+                currentPlayer = "white";
+            }
+        }
+    }
 
+    public void Update()
+    {
+        if (gameOver && Input.GetMouseButtonDown(0))
+        {
+            gameOver = false;
+            SceneManager.LoadScene("Game");
+        }    
+    }
 }
