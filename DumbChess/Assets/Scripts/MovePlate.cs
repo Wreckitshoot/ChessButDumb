@@ -12,7 +12,7 @@ public class MovePlate : MonoBehaviour
 
     int matrixX;
     int matrixY;
-
+ 
 
     public bool attack = false;
 
@@ -56,6 +56,8 @@ public class MovePlate : MonoBehaviour
         reference.GetComponent<Chessman>().DestroyMovePlates();
         
     }
+
+   
 
     public void setCoords(int x,int y)
     {

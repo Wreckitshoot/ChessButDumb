@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour 
 {
     public GameObject chesspiece;
-
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI currentPlayerText;
     private GameObject[,] positions = new GameObject[8, 8];
     private GameObject[] playerBlack = new GameObject[16];
     private GameObject[] playerWhite = new GameObject[16];
@@ -16,9 +17,14 @@ public class Game : MonoBehaviour
     private string currentPlayer = "white";
 
     private bool gameOver = false;
+
+    private float startTime = 10f;
+    private float currentTime = 0f;
     // Start is called before the first frame update
     void Start() 
     {
+        currentTime = startTime;
+        currentPlayerText.text = "Current Player: White";
         playerWhite = new GameObject[] { Create("white_rook",0,0), Create("white_knight", 1, 0),
             Create("white_bishop", 2, 0), Create("white_queen", 3, 0),Create("white_king", 4, 0),
             Create("white_bishop", 5, 0), Create("white_knight", 6, 0), Create("white_rook", 7, 0),
@@ -54,6 +60,8 @@ public class Game : MonoBehaviour
         return obj;
     }
 
+    
+    
     public void SetPosition(GameObject obj)
     {
         Chessman cm = obj.GetComponent<Chessman>();
@@ -90,19 +98,28 @@ public class Game : MonoBehaviour
     public void nextTurn() 
     {
         {
+            currentTime = startTime;
             if (currentPlayer == "white")
             {
                 currentPlayer = "black";
+                currentPlayerText.text = "Current Player: Black";
             }
             else
             {
                 currentPlayer = "white";
+                currentPlayerText.text = "Current Player: White";
             }
         }
     }
 
     public void Update()
     {
+        currentTime -= Time.deltaTime;
+        timerText.text = "Time Remaining: " + currentTime.ToString("0");
+        if (currentTime <= 0)
+        {
+            nextTurn();
+        }
         if (gameOver && Input.GetMouseButtonDown(0))
         {
             gameOver = false;
